@@ -1,0 +1,54 @@
+[
+    {
+        "hypotheses": [
+            {
+                "issue_type": "Creative Underperformance",
+                "statement": "A specific group of 20 ads, identified as 'Failing Ads,' exhibits significantly low audience engagement, with an average CTR of 0.93%\u201424.3% lower than the overall average CTR of 1.23%. This indicates a general failure of these creatives to capture attention and generate clicks, exemplified by 'Doctors recommend breathable modal \u2014 meet our women sports bras.' with the lowest CTR of 0.67%.",
+                "confidence_score": 0.95
+            },
+            {
+                "issue_type": "Creative Message-Product Mismatch",
+                "statement": "The effectiveness of the 'Doctors recommend' creative message varies drastically by product and gender, leading to click disengagement for certain combinations. While this message drives high CTR for 'men athletic briefs' (1.94%), it severely underperforms for 'women sports bras' (0.67% CTR) and 'women boyshorts' (0.68% CTR), suggesting a mismatch in perceived relevance or appeal for these specific demographics/products.",
+                "confidence_score": 0.9
+            }
+        ]
+    },
+    {
+        "hypotheses": [
+            {
+                "issue_type": "Creative Disengagement",
+                "statement": "The ad 'Seamless confidence for every day \u2014 new women sports bras.' (Image, Broad, Instagram, IN) exhibits extreme creative disengagement, evidenced by an exceptionally low CTR of 0.00036%. This is 78.9% below the average CTR for failing ads, indicating that the specific image creative and/or its message is failing to capture attention or resonate with the broad audience in India.",
+                "confidence_score": 0.9
+            },
+            {
+                "issue_type": "Offer & Creative Ineffectiveness for Retargeting",
+                "statement": "For the ad 'Hot & comfy: women bras now 20% off \u2014 feel the difference.' (Video, Retargeting, Instagram, US), a CTR of 0.00072% is unexpectedly low for a retargeting audience. This suggests the '20% off' offer or the video creative highlighting it is not compelling enough to drive clicks from an audience that has already shown prior interest.",
+                "confidence_score": 0.85
+            },
+            {
+                "issue_type": "Seasonal Mismatch or Creative Saturation",
+                "statement": "Ads featuring 'Summer\u2011ready essentials' for men's products, such as 'sweat\u2011wicking men trunks' (UGC, Broad, Instagram, US) with a 0.00082% CTR and 'sweat\u2011wicking men briefs' (Image, Lookalike, Instagram, US) with a 0.00095% CTR, are underperforming. This could be due to seasonal irrelevance if run outside of summer, or creative saturation if these specific UGC/Image creatives are no longer engaging broad/lookalike audiences with the seasonal theme.",
+                "confidence_score": 0.8
+            },
+            {
+                "issue_type": "Broad Audience Creative Mismatch",
+                "statement": "The ad 'Stretch that snaps back \u2014 durable men briefs.' (Video, Broad, Facebook, US) has a CTR of 0.00114%, which is below the average for failing ads. This indicates a mismatch between the video creative or its core message ('Stretch that snaps back') and what effectively appeals to or captures the attention of a broad audience on Facebook.",
+                "confidence_score": 0.75
+            }
+        ]
+    },
+    {
+        "hypotheses": [
+            {
+                "issue_type": "Creative Ineffectiveness / Message Irrelevance",
+                "statement": "The ad 'Cooling mesh panels for workouts \u2014 men trunks you\u2019ll actually love.' is failing to generate clicks due to Creative Ineffectiveness or Message Irrelevance. This is evidenced by its exceptionally low CTR of 0.002715, which is the absolute lowest identified, despite having the highest spend of $1,086.38 within the low-CTR ad group, indicating significant budget inefficiency.",
+                "confidence_score": 0.95
+            },
+            {
+                "issue_type": "Widespread Creative Underperformance",
+                "statement": "A broader trend of Widespread Creative Underperformance is evident across multiple ads, with 10 ads exhibiting significantly low CTRs ranging from 0.002715 to 0.003784. The average CTR for this underperforming group is 0.003487, suggesting a potential systemic issue with creative messaging or audience relevance across a segment of the ad portfolio.",
+                "confidence_score": 0.85
+            }
+        ]
+    }
+]
