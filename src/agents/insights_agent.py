@@ -2,9 +2,6 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-# Path to parent’s parent directory
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-INSIGHTS_FILE = os.path.join(BASE_DIR, "insights.json")
 
 from prompts.insights_agent_prompt import insights
 from utils.state import State
@@ -12,7 +9,6 @@ from utils.parser import parse_json_output
 from utils.helper import append_insight
 from utils.error_handler import handle_errors
 
-from pprint import pprint
 
 @handle_errors
 async def insights_agent(state: State) -> State:
@@ -41,7 +37,10 @@ async def insights_agent(state: State) -> State:
     print("-> (Insights agent) Parsing Insights model output")
     insights_response_json = parse_json_output(insights_response_raw.content)
 
-    append_insight(insights_response_json)
+    append_insight({
+        "user_query": state['query'],
+        "hypothesis": insights_response_json
+    })
 
     return {
 

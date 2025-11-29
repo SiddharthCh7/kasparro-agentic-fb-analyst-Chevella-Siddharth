@@ -2,14 +2,18 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+# Path to parent’s parent directory
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+TESTS_FILE = os.path.join(BASE_DIR, "tests")
+
 from utils.state import State
 from utils.parser import parse_json_output
 
 from prompts.evaluator_agent_prompt import retrieve, evaluate
 from utils.supabase_client import query_db
 from utils.error_handler import handle_errors
+from utils.helper import append_tests
 
-from pprint import pprint
 
 @handle_errors
 async def evaluator_agent(state: State) -> State:
@@ -35,6 +39,15 @@ async def evaluator_agent(state: State) -> State:
     evaluator_prompt = evaluate + str(res)
     evaluator_response_raw = model.invoke(evaluator_prompt)
     evaluator_response_json = parse_json_output(evaluator_response_raw.content)
+
+    tests_obj = {
+        "user_query": state['query'],
+        "insight": state['insights'],
+        "query": retriever_response_json['sql_query'],
+        "eval_result": evaluator_response_json
+    }
+
+    append_tests(tests_obj)
 
     return {
         **state,

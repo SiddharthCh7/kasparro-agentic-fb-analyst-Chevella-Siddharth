@@ -87,9 +87,12 @@ async def main():
     graph.add_edge("evaluator_agent", "planner_agent")
     graph.add_edge("cig_agent", END)
 
+    print("Enter the query:")
+    inp = input()
+
     initial_state : State = {
         "model": ChatGoogleGenerativeAI(model="gemini-2.5-flash", google_api_key=os.getenv("GEMINI_API_KEY")),
-        "query": "I need fresh ad copy for any campaigns that are showing signs of creative fatigue. Can you help?",
+        "query": inp,
         "planner": {},
         "data_summary": {},
         "insights": {},

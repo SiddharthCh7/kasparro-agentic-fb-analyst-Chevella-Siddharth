@@ -30,7 +30,10 @@ async def cig_agent(state: State) -> State:
 
     cig_response_raw = model.invoke(prompt)
     cig_response_json = parse_json_output(cig_response_raw.content)
-    append_creative(cig_response_json)
+    append_creative({
+        "user_query": state['query'],
+        "new_creative": cig_response_json
+    })
 
     return {
         **state,

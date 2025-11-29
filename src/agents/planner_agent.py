@@ -8,7 +8,6 @@ from utils.state import State
 from utils.parser import parse_json_output
 from utils.error_handler import handle_errors
 
-from pprint import pprint
 
 @handle_errors
 async def planner_agent(state: State) -> State:
@@ -25,11 +24,8 @@ async def planner_agent(state: State) -> State:
         prompt += f"\nCurrent Iteration: {iteration}"
         
         if 'evaluator' in state and state['evaluator']:
-            print("+++++++evaluator exists+++++++")
             eval_result = state['evaluator']
-            print("Evaluator Result================")
-            pprint(eval_result)
-            
+
             # Check if it's a valid evaluation result (has a verdict)
             if eval_result.get('verdict'):
                 prompt += f"\nEvaluator returned results.\nEvaluator results: {eval_result}"
