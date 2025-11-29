@@ -29,47 +29,50 @@ Follow these steps to run the Agentic Facebook Performance Analyst system.
 
 ## 1. Clone the Repository
 
-- git clone https://github.com/SiddharthCh7/kasparro-agentic-fb-analyst-Chevella-Siddharth.git
-- cd 'kasparro-agentic-fb-analyst-Chevella-Siddharth'
+- `git clone https://github.com/SiddharthCh7/kasparro-agentic-fb-analyst-Chevella-Siddharth.git`
+- `cd kasparro-agentic-fb-analyst-Chevella-Siddharth`
 
 ## 2. Install Dependencies
 
-- It is recommended to use a virtual environment.
-    python3 -m venv venv
-    source venv/bin/activate   # Windows: venv\Scripts\activate
+- It is recommended to use a virtual environment:<br>
+    `python3 -m venv venv`<br>
+    - For mac: `source venv/bin/activate`<br>
+    - For windows: `venv\Scripts\activate`<br>
 
-- Install required packages:
-    pip install -r requirements.txt
+- Install required packages:<br>
+    `pip install -r requirements.txt`
 
 ## 3. Set Up Environment Variables
-- Create a .env file in the project root:
-    GEMINI_API_KEY=your_key_here
+- Create a .env file in the project root: <br>
+    `GEMINI_API_KEY=your_key_here`
 
 ## 4. Run the System
 
-- Navigate to the src directory: cd src
+- Navigate to the src directory:<br>
+    `cd src`
 
-- Run the orchestration script: python run.py
+- Run the orchestration script:<br>
+    `python run.py`
 
-- You will be prompted to enter an input query, for example:
-    Which of my ads are failing to get clicks? Please draft some replacements based on my best performers.
+- You will be prompted to enter an input query, for example: <br>
+    `Which of my ads are failing to get clicks? Please draft some replacements based on my best performers.`
 
-Enter the query and the system will begin processing.
+### Enter the query and the system will begin processing.
 
 ## 5. View Outputs
 
 After execution, the results will appear in the reports directory:
 
-- Insights:
-    reports/insights.json
+- Insights:<br>
+    `reports/insights.json`
 
-- Creative Recommendations:
-    reports/creatives.json
+- Creative Recommendations:<br>
+    `reports/creatives.json`
 
-- Evaluator Test Results:
-    reports/tests.json
+- Evaluator Test Results:<br>
+    `reports/tests.json`
 
-- Final Summarized Report (auto-titled by the AI):
-    reports/report_summaries/<generated_title>.md
+- Final Summarized Report (auto-titled by the AI):<br>
+    `reports/report_summaries/<generated_title>.md`
 
 #### The workflow is simple: clone → install → set API key → run → view reports.
