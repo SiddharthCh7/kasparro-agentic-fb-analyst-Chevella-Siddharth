@@ -1,0 +1,18 @@
+[
+    {
+        "user_query": "Which of my ads are failing to get clicks? Please draft some replacements based on my best performers.",
+        "insight": {
+            "issue_type": "Ineffective Creative Message",
+            "statement": "The failure of specific ads to get clicks is driven by ineffective creative messages, evidenced by an average CTR of 0.0084% for failing ads, which is 54.6% lower than the 0.0186% average CTR of best performing ads.",
+            "confidence_score": 0.95
+        },
+        "query": "WITH CreativeMessageDailyPerformance AS (\n    SELECT\n        date,\n        creative_message,\n        SUM(spend) AS daily_spend,\n        SUM(revenue) AS daily_revenue,\n        SUM(clicks) AS daily_clicks,\n        SUM(impressions) AS daily_impressions\n    FROM campaigns_data\n    WHERE date >= '2025-03-31'::DATE - INTERVAL '30 days'\n    GROUP BY date, creative_message\n),\nCreativeMessageAggregatedPerformance AS (\n    SELECT\n        creative_message,\n        SUM(daily_spend) AS total_spend_for_message,\n        SUM(daily_revenue) AS total_revenue_for_message,\n        SUM(daily_clicks) AS total_clicks_for_message,\n        SUM(daily_impressions) AS total_impressions_for_message,\n        SUM(daily_clicks) * 1.0 / NULLIF(SUM(daily_impressions), 0) AS calculated_ctr_for_message\n    FROM CreativeMessageDailyPerformance\n    GROUP BY creative_message\n    HAVING SUM(daily_impressions) > 0\n),\nRankedCreativeMessages AS (\n    SELECT\n        creative_message,\n        total_spend_for_message,\n        total_revenue_for_message,\n        calculated_ctr_for_message,\n        NTILE(10) OVER (ORDER BY calculated_ctr_for_message ASC) AS ctr_decile_asc,\n        NTILE(10) OVER (ORDER BY calculated_ctr_for_message DESC) AS ctr_decile_desc\n    FROM CreativeMessageAggregatedPerformance\n)\n(SELECT\n    'Failing Ads (Bottom 10% CTR by Creative Message)' AS performance_group,\n    COUNT(DISTINCT creative_message) AS number_of_creative_messages,\n    AVG(calculated_ctr_for_message) AS average_ctr_for_group,\n    SUM(total_spend_for_message) AS total_spend_for_group,\n    SUM(total_revenue_for_message) AS total_revenue_for_group,\n    SUM(total_revenue_for_message) / NULLIF(SUM(total_spend_for_message), 0) AS calculated_roas_for_group\nFROM RankedCreativeMessages\nWHERE ctr_decile_asc = 1)\n\nUNION ALL\n\n(SELECT\n    'Best Performing Ads (Top 10% CTR by Creative Message)' AS performance_group,\n    COUNT(DISTINCT creative_message) AS number_of_creative_messages,\n    AVG(calculated_ctr_for_message) AS average_ctr_for_group,\n    SUM(total_spend_for_message) AS total_spend_for_group,\n    SUM(total_revenue_for_message) AS total_revenue_for_group,\n    SUM(total_revenue_for_message) / NULLIF(SUM(total_spend_for_message), 0) AS calculated_roas_for_group\nFROM RankedCreativeMessages\nWHERE ctr_decile_desc = 1);",
+        "eval_result": {
+            "hypothesis_type": "Ad Creative Effectiveness",
+            "original_statement": "Ads with higher Click-Through Rates (CTR) lead to significantly higher Return on Ad Spend (ROAS).",
+            "results_summary": "The analysis compared two groups of ads based on their Click-Through Rate (CTR). The 'Best Performing Ads' (Top 10% CTR by Creative Message), with an average CTR of 1.80% (0.01803), generated a Return on Ad Spend (ROAS) of 8.91. In contrast, 'Failing Ads' (Bottom 10% CTR by Creative Message), with a significantly lower average CTR of 0.70% (0.00703), yielded a ROAS of 4.48. This indicates that ads with higher CTRs achieved a 98.9% higher ROAS compared to ads with lower CTRs.",
+            "verdict": "supported",
+            "confidence": "medium"
+        }
+    }
+]

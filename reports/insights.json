@@ -50,5 +50,18 @@
                 "confidence_score": 0.85
             }
         ]
+    },
+    {
+        "issue_type": "Poor Offer Performance",
+        "statement": "The low ROAS in several underperforming campaigns is primarily driven by poor offer performance (CVR), evidenced by their relatively high CTRs but significantly below-average ROAS. For instance, the campaign 'Men Bold Colors Drop' with creative 'Breathable bamboo that moves with you \u2014 limited offer on men athletic briefs.' achieved a CTR of 0.0039 (above the overall average of 0.0024) but an ROAS of 0.28 (95% below average).",
+        "confidence_score": 0.9
+    },
+    {
+        "user_query": "Which of my ads are failing to get clicks? Please draft some replacements based on my best performers.",
+        "hypothesis": {
+            "issue_type": "Ineffective Creative Message",
+            "statement": "The failure of specific ads to get clicks is driven by ineffective creative messages, evidenced by an average CTR of 0.0084% for failing ads, which is 54.6% lower than the 0.0186% average CTR of best performing ads.",
+            "confidence_score": 0.95
+        }
     }
 ]

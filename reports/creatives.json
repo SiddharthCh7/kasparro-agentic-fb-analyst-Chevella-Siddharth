@@ -10,5 +10,11 @@
     },
     {
         "improved_creatives": []
+    },
+    {
+        "user_query": "Which of my ads are failing to get clicks? Please draft some replacements based on my best performers.",
+        "new_creative": {
+            "improved_creatives": []
+        }
     }
 ]
