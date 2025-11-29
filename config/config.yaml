@@ -1,0 +1,51 @@
+# ================================
+# Agentic FB Performance Analyst
+# Global Configuration File
+# ================================
+
+# ----------------
+# General Settings
+# ----------------
+project_name: "kasparro-agentic-fb-analyst"
+seed: 42
+log_level: "INFO"
+
+# ---------------
+# LLM Parameters
+# ---------------
+llm:
+  model: "gemini-2.5-flash"
+  temperature: 0.2
+  max_tokens: 4096
+  retry_attempts: 3
+  retry_delay: 2
+
+# --------------------
+# Data / File Settings
+# --------------------
+paths:
+  reports_dir: "../reports"
+  report_summaries_dir: "../reports/report_summaries"
+  insights_file: "../reports/insights.json"
+  creatives_file: "../reports/creatives.json"
+  tests_file: "../reports/tests.json"
+  prompts_dir: "../src/prompts"
+  logs_dir: "../src/logs"
+  agents_dir: "../src/agents"
+
+# --------------------------
+# Thresholds & Agent Routing
+# --------------------------
+thresholds:
+  ctr_low: 0.012
+  roas_drop_ratio: 0.15
+  min_days_for_analysis: 7
+
+
+# ----------------------------------
+# Creative Generation Configuration
+# ----------------------------------
+creative_generation:
+  num_headlines: 5
+  num_messages: 5
+  num_ctas: 3

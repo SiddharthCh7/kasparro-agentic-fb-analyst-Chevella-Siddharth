@@ -1,12 +1,25 @@
 import os
 import json
+import yaml
+from pathlib import Path
 
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-REPORTS_DIR = os.path.join(BASE_DIR, "reports")
-INSIGHTS_FILE = os.path.join(REPORTS_DIR, "insights.json")
-CREATIVES_FILE = os.path.join(REPORTS_DIR, "creatives.json")
-TESTS_FILE=os.path.join(REPORTS_DIR, "tests.json")
+def load_config(path: str = "../../config/config.yaml"):
+    with open(Path(__file__).parent / path, "r") as f:
+        return yaml.safe_load(f)
+    
+config = load_config()
 
+# Resolve paths relative to the project root
+# src/utils/helper.py -> src/utils -> src
+SRC_DIR = Path(__file__).parent.parent
+
+def resolve_path(path_str):
+    return str((SRC_DIR / path_str).resolve())
+
+REPORT_SUMMARIES_DIR = resolve_path(config['paths']['report_summaries_dir'])
+INSIGHTS_FILE = resolve_path(config['paths']['insights_file'])
+CREATIVES_FILE = resolve_path(config['paths']['creatives_file'])
+TESTS_FILE = resolve_path(config['paths']['tests_file'])
 
 def append_insight(obj):
     # If file exists, load it

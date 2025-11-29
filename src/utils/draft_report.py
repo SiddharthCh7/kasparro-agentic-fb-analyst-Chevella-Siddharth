@@ -1,8 +1,7 @@
 
 import os
 
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-REPORTS_DIR = os.path.join(BASE_DIR, "reports", "report_summaries")
+from utils.helper import REPORT_SUMMARIES_DIR
 
 
 from utils.state import State
@@ -62,8 +61,8 @@ def generate_draft_report(state: State):
     filename = report_content['title'].strip().replace(" ", "_").lower() + ".md"
 
     # Save the file
-    os.makedirs(REPORTS_DIR, exist_ok=True)
-    file_path = os.path.join(REPORTS_DIR, filename)
+    os.makedirs(REPORT_SUMMARIES_DIR, exist_ok=True)
+    file_path = os.path.join(REPORT_SUMMARIES_DIR, filename)
     
     with open(file_path, "w") as f:
         f.write(report_content['content'])

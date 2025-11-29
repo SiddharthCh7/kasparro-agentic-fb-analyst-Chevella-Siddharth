@@ -9,6 +9,7 @@ load_dotenv()
 from utils.state import State
 from utils.router import planner_router
 from utils.draft_report import generate_draft_report
+from utils.helper import load_config
 
 # Agents
 from agents.planner_agent import planner_agent
@@ -21,6 +22,8 @@ from agents.cig_agent import cig_agent
 import logging
 import os
 from datetime import datetime
+
+config=load_config()
 
 # Ensure the 'logs' directory exists
 if not os.path.exists('logs'):
@@ -91,7 +94,7 @@ async def main():
     inp = input()
 
     initial_state : State = {
-        "model": ChatGoogleGenerativeAI(model="gemini-2.5-flash", google_api_key=os.getenv("GEMINI_API_KEY")),
+        "model": ChatGoogleGenerativeAI(model=config['llm']['model'], google_api_key=os.getenv("GEMINI_API_KEY")),
         "query": inp,
         "planner": {},
         "data_summary": {},
