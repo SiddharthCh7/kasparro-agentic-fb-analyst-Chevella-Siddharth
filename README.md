@@ -75,4 +75,4 @@ After execution, the results will appear in the reports directory:
 - Final Summarized Report (auto-titled by the AI):<br>
     `reports/report_summaries/<generated_title>.md`
 
-#### The workflow is simple: clone → install → set API key → run → view reports.
+### The workflow is simple: clone → install → set API key → run → view reports.
